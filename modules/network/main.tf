@@ -1,12 +1,12 @@
 module "vpc" {
-  source = "../vpc"
+  source = "./vpc"
 
   cidr        = var.vpc_cidr
   environment = var.environment
 }
 
 module "private_subnet" {
-  source = "../subnet"
+  source = "./subnet"
 
   name               = "${var.environment}_private_subnet"
   environment        = var.environment
@@ -16,7 +16,7 @@ module "private_subnet" {
 }
 
 module "public_subnet" {
-  source = "../subnet"
+  source = "./subnet"
 
   name               = "${var.environment}_public_subnet"
   environment        = var.environment
@@ -26,7 +26,7 @@ module "public_subnet" {
 }
 
 module "nat" {
-  source = "../nat_gateway"
+  source = "./nat_gateway"
 
   subnet_ids   = module.public_subnet.ids
   subnet_count = length(var.public_subnet_cidrs)
