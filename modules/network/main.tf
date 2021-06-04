@@ -25,6 +25,16 @@ module "public_subnet" {
   availability_zones = var.availability_zones
 }
 
+module "database_subnet" {
+  source = "./subnet"
+
+  name               = "${var.environment}_database_subnet"
+  environment        = var.environment
+  vpc_id             = module.vpc.id
+  cidrs              = var.database_subnet_cidrs
+  availability_zones = var.availability_zones
+}
+
 module "nat" {
   source = "./nat_gateway"
 

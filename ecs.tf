@@ -3,6 +3,17 @@ provider "aws" {
   profile = var.aws_profile
 }
 
+module "network" {
+  source                = "./modules/network"
+  environment           = var.environment
+  vpc_cidr              = var.vpc_cidr
+  public_subnet_cidrs   = var.public_subnet_cidrs
+  private_subnet_cidrs  = var.private_subnet_cidrs
+  database_subnet_cidrs = var.database_subnet_cidrs
+  availability_zones    = var.availability_zones
+  depends_id            = ""
+}
+
 module "ecs" {
   source = "./modules/ecs"
 
@@ -19,6 +30,21 @@ module "ecs" {
   key_name             = var.environment
   instance_type        = var.instance_type
   ecs_aws_ami          = var.aws_ecs_ami
+  public_subnet_ids    = module.network.public_subnet_ids
+  private_subnet_ids   = module.network.private_subnet_ids
+  vpc_id               = module.network.vpc_id
+  depends_id           = module.network.depends_id
+}
+
+module "rds" {
+  source = "./modules/rds"
+
+  environment           = var.environment
+  rds_instance_class    = var.rds_instance_class
+  rds_version           = var.rds_version
+  vpc_cidr              = var.vpc_cidr
+  vpc_id                = module.network.vpc_id
+  database_subnet_ids   = module.network.database_subnet_ids
 }
 
 variable "environment" {
@@ -44,6 +70,10 @@ variable "private_subnet_cidrs" {
   description = "The IP ranges to use for the private subnets in your VPC."
   type = list
 }
+variable "database_subnet_cidrs" {
+  description = "The IP ranges to use for the database subnets in your VPC."
+  type = list
+}
 variable "availability_zones" {
   description = "The AWS availability zones to create subnets in."
   type = list
@@ -59,6 +89,12 @@ variable "desired_capacity" {
 }
 variable "instance_type" {
   description = "Size of instances in the ECS cluster."
+}
+variable "rds_instance_class" {
+  description = "RDS instance type"
+}
+variable "rds_version" {
+  description = "Database type version"
 }
 
 output "default_alb_target_group" {

@@ -23,6 +23,10 @@ public_subnet_cidrs = ["10.0.0.0/24", "10.0.1.0/24"]
 # Must be within the IP range of your VPC.
 private_subnet_cidrs = ["10.0.50.0/24", "10.0.51.0/24"]
 
+# The IP ranges to use for the database subnets in your VPC.
+# Must be within the IP range of your VPC.
+database_subnet_cidrs = ["10.0.70.0/24", "10.0.71.0/24", "10.0.72.0/24"]
+
 # The AWS availability zones to create subnets in.
 # For high-availability, we need at least two.
 availability_zones = ["ap-southeast-1a", "ap-southeast-1b"]
@@ -39,3 +43,8 @@ desired_capacity = 1
 # Size of instances in the ECS cluster.
 instance_type = "t2.micro"
 
+# RDS instance type
+rds_instance_class = "db.t3.small"
+
+# RDS database version
+rds_version = "13.2"

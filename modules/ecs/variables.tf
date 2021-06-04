@@ -80,3 +80,21 @@ variable "cloudwatch_prefix" {
   default     = ""
   description = "If you want to avoid cloudwatch collision or you don't want to merge all logs to one log group specify a prefix"
 }
+
+variable "public_subnet_ids" {
+  type        = list
+  description = "The list of public subnets to place the instances in"
+}
+
+variable "private_subnet_ids" {
+  type        = list
+  description = "The list of private subnets to place the instances in"
+}
+
+variable "vpc_id" {
+  description = "The VPC id"
+}
+
+variable "depends_id" {
+  description = "Workaround to wait for the NAT gateway to finish before starting the instances"
+}
