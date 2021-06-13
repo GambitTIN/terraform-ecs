@@ -36,16 +36,16 @@ module "ecs" {
   depends_id           = module.network.depends_id
 }
 
-module "rds" {
-  source = "./modules/rds"
+# module "rds" {
+#   source = "./modules/rds"
 
-  environment           = var.environment
-  rds_instance_class    = var.rds_instance_class
-  rds_version           = var.rds_version
-  vpc_cidr              = var.vpc_cidr
-  vpc_id                = module.network.vpc_id
-  database_subnet_ids   = module.network.database_subnet_ids
-}
+#   environment           = var.environment
+#   rds_instance_class    = var.rds_instance_class
+#   rds_version           = var.rds_version
+#   vpc_cidr              = var.vpc_cidr
+#   vpc_id                = module.network.vpc_id
+#   database_subnet_ids   = module.network.database_subnet_ids
+# }
 
 variable "environment" {
   description = "A name to describe the environment we're creating."
