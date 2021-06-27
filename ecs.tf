@@ -9,7 +9,7 @@ module "network" {
   vpc_cidr              = var.vpc_cidr
   public_subnet_cidrs   = var.public_subnet_cidrs
   private_subnet_cidrs  = var.private_subnet_cidrs
-  database_subnet_cidrs = var.database_subnet_cidrs
+  # database_subnet_cidrs = var.database_subnet_cidrs
   availability_zones    = var.availability_zones
   depends_id            = ""
 }
@@ -70,10 +70,10 @@ variable "private_subnet_cidrs" {
   description = "The IP ranges to use for the private subnets in your VPC."
   type = list
 }
-variable "database_subnet_cidrs" {
-  description = "The IP ranges to use for the database subnets in your VPC."
-  type = list
-}
+# variable "database_subnet_cidrs" {
+#   description = "The IP ranges to use for the database subnets in your VPC."
+#   type = list
+# }
 variable "availability_zones" {
   description = "The AWS availability zones to create subnets in."
   type = list
@@ -93,9 +93,9 @@ variable "instance_type" {
 variable "rds_instance_class" {
   description = "RDS instance type"
 }
-variable "rds_version" {
-  description = "Database type version"
-}
+# variable "rds_version" {
+#   description = "Database type version"
+# }
 
 output "default_alb_target_group" {
   value = module.ecs.default_alb_target_group

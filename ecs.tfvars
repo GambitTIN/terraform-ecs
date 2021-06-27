@@ -25,7 +25,7 @@ private_subnet_cidrs = ["10.0.50.0/24", "10.0.51.0/24"]
 
 # The IP ranges to use for the database subnets in your VPC.
 # Must be within the IP range of your VPC.
-database_subnet_cidrs = ["10.0.70.0/24", "10.0.71.0/24", "10.0.72.0/24"]
+# database_subnet_cidrs = ["10.0.70.0/24", "10.0.71.0/24", "10.0.72.0/24"]
 
 # The AWS availability zones to create subnets in.
 # For high-availability, we need at least two.
@@ -47,4 +47,4 @@ instance_type = "t2.micro"
 rds_instance_class = "db.t3.small"
 
 # RDS database version
-rds_version = "13.2"
+# rds_version = "13.2"
