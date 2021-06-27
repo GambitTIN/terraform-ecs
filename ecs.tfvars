@@ -9,7 +9,7 @@ aws_region = "ap-southeast-1"
 
 # The AMI to seed ECS instances with.
 # Leave empty to use the latest Linux 2 ECS-optimized AMI by Amazon.
-aws_ecs_ami = "ami-0e8e39877665a7c92"
+aws_ecs_ami = "ami-0c5ab0d956378c44d"
 
 # The IP range to attribute to the virtual network.
 # The allowed block size is between a /16 (65,536 addresses) and /28 (16 addresses).
